@@ -1,16 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using costumer.api.Infra.IoC.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
 namespace costumer.api
 {
     public class Startup
@@ -25,6 +18,10 @@ namespace costumer.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerSetup();
+            services.AddDependencyInjectionSetup();
+            services.AddDatabaseSetup();
+
             services.AddControllers();
         }
 
@@ -36,11 +33,12 @@ namespace costumer.api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
+            app.UseSwaggerSetup();
 
             app.UseEndpoints(endpoints =>
             {
