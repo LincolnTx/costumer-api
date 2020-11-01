@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace costumer.api.Infra.Data.Repositories
 {
-    interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class
     {
         void Add(TEntity obj);
     }

@@ -2,9 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace costumer.api.Infra.Data.Confuguration
 {
@@ -32,7 +29,17 @@ namespace costumer.api.Infra.Data.Confuguration
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           modelBuilder.Entity<CustomerEntity>().HasKey(customer => customer.Id);
+            modelBuilder.Entity<CustomerEntity>()
+                .ToTable("Customers")
+                .HasKey(customer => customer.Id);
+            
+            modelBuilder.Entity<Phones>()
+                .ToTable("Phones")
+                .HasKey(phones => phones.Id);
+            
+            modelBuilder.Entity<UserEntity>()
+                .ToTable("User")
+                .HasKey(user => user.Id);
         }
 
     }

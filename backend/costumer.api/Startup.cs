@@ -1,4 +1,5 @@
 using costumer.api.Infra.IoC.Configurations;
+using costumer.api.v1.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,8 +21,8 @@ namespace costumer.api
         {
             services.AddSwaggerSetup();
             services.AddDependencyInjectionSetup();
-            services.AddDatabaseSetup();
-
+            //services.AddDatabaseSetup();
+            services.AddScoped<GlobalExceptionFilterAttribute>();
             services.AddControllers();
         }
 

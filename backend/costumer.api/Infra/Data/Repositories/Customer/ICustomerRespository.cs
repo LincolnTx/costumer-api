@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace costumer.api.Infra.Data.Repositories.Customer
 {
-    interface ICustomerRespository : IRepository<CustomerEntity>
+    public interface ICustomerRespository : IRepository<CustomerEntity>
     {
         Task<CustomerEntity> FindCustomerByCpf(string cpf);
     }
