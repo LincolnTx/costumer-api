@@ -3,6 +3,7 @@ using costumer.api.Infra.Data.Repositories.Customer;
 using costumer.api.Models;
 using System;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace costumer.api.Infra.Data.Repositories.Costumer
 {
@@ -13,9 +14,14 @@ namespace costumer.api.Infra.Data.Repositories.Costumer
 
         }
 
-        public Task<CustomerEntity> FindCustomerByCpf(string cpf)
+        public async Task<CustomerEntity> FindCustomerByCpfCnpj(string cpfCnpj)
         {
-            throw new NotImplementedException();
+            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(customer => customer.CpfCnpj == cpfCnpj);
+        }
+        
+        public async Task<CustomerEntity> FindCustomerByEmail(string email)
+        {
+            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(customer => customer.Email == email);
         }
     }
 }

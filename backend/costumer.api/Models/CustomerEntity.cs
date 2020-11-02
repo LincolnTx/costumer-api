@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
@@ -8,7 +9,6 @@ namespace costumer.api.Models
     [DataContract]
     public class CustomerEntity
     {
-        // adicionar data annotations
         [Column]
         [DataMember]
         [Key]
@@ -45,5 +45,34 @@ namespace costumer.api.Models
         [Column]
         [DataMember]
         public int Type { get; set; }
+
+        protected CustomerEntity()
+        {
+
+        }
+        public CustomerEntity(string name, string email, string cpfCnpj, 
+            string companyName, string zipCode, int stage, List<string> phones, int type )
+        {
+            Id = Guid.NewGuid().ToString();
+            Name = name;
+            Email = email;
+            CpfCnpj = cpfCnpj;
+            CompanyName = companyName;
+            ZipCode = zipCode;
+            Stage = stage;
+            Type = type;
+            InitializePhones(phones);
+        }
+
+        private void InitializePhones(List<string> phones)
+        {
+            PhoneNumbers = new List<Phones>();
+            
+            phones.ForEach(phone =>
+            {
+                var newPhone = new Phones(phone, Id);
+                PhoneNumbers.Add(newPhone);
+            });
+        }
     }
 }

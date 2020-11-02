@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace costumer.api.Infra.Data.Confuguration
 {
@@ -40,6 +42,11 @@ namespace costumer.api.Infra.Data.Confuguration
             modelBuilder.Entity<UserEntity>()
                 .ToTable("User")
                 .HasKey(user => user.Id);
+        }
+
+        public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return await base.SaveChangesAsync(cancellationToken) > 0;
         }
 
     }

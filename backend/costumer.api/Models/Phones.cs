@@ -19,5 +19,15 @@ namespace costumer.api.Models
 
         [ForeignKey("CustomerId")]
         public CustomerEntity Customer { get; set; }
+
+        protected Phones()
+        {
+
+        }
+        public Phones(string number, string customerId)
+        {
+            PhoneNumber = number;
+            CustomerId = customerId;
+        }
     }
 }

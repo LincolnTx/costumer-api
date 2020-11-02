@@ -3,6 +3,7 @@ using costumer.api.Infra.Data.Repositories.User;
 using costumer.api.v1.Contracts;
 using System.Threading.Tasks;
 using costumer.api.Application.RequestHandlers;
+using costumer.api.Infra.SeedWork;
 
 namespace costumer.api.Application.Identity
 {
@@ -10,7 +11,8 @@ namespace costumer.api.Application.Identity
     {
         private readonly IUserRepository _userRepository;
 
-        public IdentityService(IUserRepository userRepository, ExceptionNotificationHandler exceptionHandler) : base(exceptionHandler)
+        public IdentityService(IUserRepository userRepository, 
+            ExceptionNotificationHandler exceptionHandler, IUnitOfWork uow) : base(exceptionHandler, uow)
         {
             _userRepository = userRepository;
         }
