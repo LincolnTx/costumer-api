@@ -41,6 +41,7 @@ namespace costumer.api.Infra.IoC
         {
             services.AddScoped<ICreateCustumerRequestHandler, CreateCustumerRequestHandler>();
             services.AddScoped<IDeleteCustomerRequestHandler, DeleteCustomerRequestHandler>();
+            services.AddScoped<IFindCustomerRequestHandler, FindCustomerRequestHandler>();
         }
 
         public static void AddServices(IServiceCollection services)

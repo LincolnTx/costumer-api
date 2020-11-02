@@ -1,7 +1,7 @@
 ﻿using costumer.api.Infra.Data.Confuguration;
 using costumer.api.Infra.Data.Repositories.Customer;
 using costumer.api.Models;
-using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,6 +32,11 @@ namespace costumer.api.Infra.Data.Repositories.Costumer
         public CustomerEntity DeleteCustomer(CustomerEntity customer)
         {
             return _dbSet.Remove(customer).Entity;
+        }
+
+        public async Task<List<CustomerEntity>> ListCustomers()
+        {
+            return await _dbSet.ToListAsync();
         }
     }
 }

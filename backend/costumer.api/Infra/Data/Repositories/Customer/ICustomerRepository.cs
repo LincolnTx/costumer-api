@@ -1,4 +1,5 @@
-﻿using costumer.api.Models;
+﻿using System.Collections.Generic;
+using costumer.api.Models;
 using System.Threading.Tasks;
 
 namespace costumer.api.Infra.Data.Repositories.Customer
@@ -9,5 +10,6 @@ namespace costumer.api.Infra.Data.Repositories.Customer
         Task<CustomerEntity> FindCustomerByEmail(string email);
         Task<CustomerEntity> FindCustomerById(string id);
         CustomerEntity DeleteCustomer(CustomerEntity customer);
+        Task<List<CustomerEntity>> ListCustomers();
     }
 }
