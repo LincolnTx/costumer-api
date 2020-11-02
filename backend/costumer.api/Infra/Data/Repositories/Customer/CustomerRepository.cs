@@ -3,6 +3,7 @@ using costumer.api.Infra.Data.Repositories.Customer;
 using costumer.api.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using costumer.api.v1.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace costumer.api.Infra.Data.Repositories.Costumer
@@ -37,6 +38,16 @@ namespace costumer.api.Infra.Data.Repositories.Costumer
         public async Task<List<CustomerEntity>> ListCustomers()
         {
             return await _dbSet.ToListAsync();
+        }
+        
+        public async Task<bool> UpdateCustomer(string id, string cpfCnpj = null, string companyName = null, string zipCode = null, int? stage = null)
+        {
+           var customer = await _dbSet.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
+
+           var success = customer.UpdateCustomerInfo(cpfCnpj, companyName, zipCode, stage);
+           _dbSet.Update(customer);
+
+           return success;
         }
     }
 }

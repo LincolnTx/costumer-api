@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using costumer.api.Application.Validations;
 
 namespace costumer.api.v1.Contracts
@@ -10,7 +7,7 @@ namespace costumer.api.v1.Contracts
     {
         public string Name { get; set; }
         public string CpfCnpj { get; set; }
-        public string CompanyName { get; set; }
+        public string? CompanyName { get; set; }
         public string ZipCode { get; set; }
         public string Email { get; set; }
         public int Stage { get; set; }

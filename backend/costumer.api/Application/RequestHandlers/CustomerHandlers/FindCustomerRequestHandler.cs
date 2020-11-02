@@ -47,9 +47,23 @@ namespace costumer.api.Application.RequestHandlers.CustomerHandlers
             return customersResponses;
         }
 
-        public Task<CustomersResponse> FindCustomerByEmail(string email)
+        public async Task<CustomersResponse> FindCustomerByEmail(string email)
         {
-            throw new System.NotImplementedException();
+            var customer = await _customerRepository.FindCustomerByEmail(email);
+            
+            if (customer == null)
+            {
+                await _notifications.PublishException(new ExceptionNotification("014",
+                    "Não foi possível encontrar esse cliente"));
+                return null;
+            }
+
+            var phones = await _phoneRepository.FindPhonesByUserId(customer.Id);
+            
+            var customerResponse = new CustomersResponse(customer.Name, customer.Email, customer.CpfCnpj, customer.CompanyName, 
+                customer.ZipCode, customer.Stage, customer.Type, SanitizePhones(phones));
+            
+            return customerResponse;
         }
 
         private List<string> SanitizePhones(List<Phones> phones)

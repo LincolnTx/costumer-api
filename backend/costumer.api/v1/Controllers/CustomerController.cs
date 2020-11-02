@@ -11,14 +11,17 @@ namespace costumer.api.v1.Controllers
         private readonly ICreateCustumerRequestHandler _createCustomer;
         private readonly IDeleteCustomerRequestHandler _deleteCustomer;
         private readonly IFindCustomerRequestHandler _findCustomer;
+        private readonly IUpdateCustomerRequestHandler _updateCustomer;
 
         public CustomerController(ExceptionNotificationHandler notifications,
             ICreateCustumerRequestHandler createCustomer, IDeleteCustomerRequestHandler deleteCustomer,
-            IFindCustomerRequestHandler findCustomer) : base(notifications)
+            IFindCustomerRequestHandler findCustomer,
+            IUpdateCustomerRequestHandler updateCustomer) : base(notifications)
         {
             _createCustomer = createCustomer;
             _deleteCustomer = deleteCustomer;
             _findCustomer = findCustomer;
+            _updateCustomer = updateCustomer;
         }
 
         [HttpPost]
@@ -43,6 +46,22 @@ namespace costumer.api.v1.Controllers
             var customers = await _findCustomer.ListCustomers();
 
             return Response(200, customers);
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> List(string email)
+        {
+            var customer = await _findCustomer.FindCustomerByEmail(email);
+
+            return Response(200, customer);
+        }
+        
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(string id, [FromBody] UpdateCustomerRequest updateRequest)
+        {
+            var success = await _updateCustomer.Handle(id ,updateRequest);
+
+            return Response(200, success);
         }
         
     }
