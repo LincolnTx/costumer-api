@@ -8,20 +8,30 @@ namespace costumer.api.v1.Controllers
 {
     public class CustomerController : BaseController
     {
-        private readonly ICreateCustumerRequestHandler _createCustumer;
+        private readonly ICreateCustumerRequestHandler _createCustomer;
+        private readonly IDeleteCustomerRequestHandler _deleteCustomer;
 
         public CustomerController(ExceptionNotificationHandler notifications,
-            ICreateCustumerRequestHandler createCustomer) : base(notifications)
+            ICreateCustumerRequestHandler createCustomer, IDeleteCustomerRequestHandler deleteCustomer) : base(notifications)
         {
-            _createCustumer = createCustomer;
+            _createCustomer = createCustomer;
+            _deleteCustomer = deleteCustomer;
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateCustomerAsync([FromBody] CreateCustomerRequest requestCustomer)
         {
-            var createCustomerResponse = await _createCustumer.Handle(requestCustomer);
+            var createCustomerResponse = await _createCustomer.Handle(requestCustomer);
 
             return Response(200, createCustomerResponse);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCustomerAsync(string id)
+        {
+            var deletedCustomer = await _deleteCustomer.Handle(id);
+
+            return Response(200, deletedCustomer);
         }
     }
 }

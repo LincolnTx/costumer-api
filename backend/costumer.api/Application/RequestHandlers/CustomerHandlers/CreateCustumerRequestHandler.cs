@@ -11,12 +11,12 @@ namespace costumer.api.Application.RequestHandlers.CustomerHandlers
 {
     public class CreateCustumerRequestHandler : RequestHandler, ICreateCustumerRequestHandler
     {
-        private readonly ICustomerRespository _customerRespository;
+        private readonly ICustomerRepository _customerRepository;
 
         public CreateCustumerRequestHandler(ExceptionNotificationHandler notifications, IUnitOfWork uow,
-            ICustomerRespository customerRespository) : base(notifications, uow)
+            ICustomerRepository customerRepository) : base(notifications, uow)
         {
-            _customerRespository = customerRespository;
+            _customerRepository = customerRepository;
         }
 
         public async Task<CreateCustomerResponse> Handle(CreateCustomerRequest requestCustomer)
@@ -36,7 +36,7 @@ namespace costumer.api.Application.RequestHandlers.CustomerHandlers
             var customer = new CustomerEntity(requestCustomer.Name, requestCustomer.Email, requestCustomer.CpfCnpj, requestCustomer.CompanyName, 
                 requestCustomer.ZipCode, requestCustomer.Stage, requestCustomer.Phones, customerType);
 
-            _customerRespository.Add(customer);
+            _customerRepository.Add(customer);
 
             if(! await Commit())
             {
@@ -62,7 +62,7 @@ namespace costumer.api.Application.RequestHandlers.CustomerHandlers
 
         private async Task<bool> IsCustomerAbleToPersist(string cpfCnpj, string email)
         {
-            var emailVerification = await _customerRespository.FindCustomerByEmail(email);
+            var emailVerification = await _customerRepository.FindCustomerByEmail(email);
 
             if (emailVerification != null)
             {
@@ -72,7 +72,7 @@ namespace costumer.api.Application.RequestHandlers.CustomerHandlers
                 return false;
             }
 
-            var cpfCnpjVerification = await _customerRespository.FindCustomerByCpfCnpj(cpfCnpj);
+            var cpfCnpjVerification = await _customerRepository.FindCustomerByCpfCnpj(cpfCnpj);
             
             if (cpfCnpjVerification != null)
             {

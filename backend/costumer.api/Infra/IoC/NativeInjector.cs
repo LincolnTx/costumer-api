@@ -6,6 +6,7 @@ using costumer.api.Infra.Data.Confuguration;
 using costumer.api.Infra.Data.Repositories;
 using costumer.api.Infra.Data.Repositories.Costumer;
 using costumer.api.Infra.Data.Repositories.Customer;
+using costumer.api.Infra.Data.Repositories.Phone;
 using costumer.api.Infra.Data.Repositories.User;
 using costumer.api.Infra.SeedWork;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,8 +26,9 @@ namespace costumer.api.Infra.IoC
         public static void RegisterData(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>();
-            services.AddScoped<ICustomerRespository, CustomerRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPhoneRepository, PhoneRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
@@ -38,6 +40,7 @@ namespace costumer.api.Infra.IoC
         public static void RegisterHandlers(IServiceCollection services)
         {
             services.AddScoped<ICreateCustumerRequestHandler, CreateCustumerRequestHandler>();
+            services.AddScoped<IDeleteCustomerRequestHandler, DeleteCustomerRequestHandler>();
         }
 
         public static void AddServices(IServiceCollection services)
