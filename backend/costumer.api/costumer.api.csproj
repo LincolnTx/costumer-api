@@ -16,5 +16,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="json" /></VisualStudio></ProjectExtensions>
+
 
 </Project>
