@@ -8,6 +8,8 @@ Para executar o projeto, abra a solution no VS19 e clique no ícone verde de pla
 
 Ao finalizar o processo de build, uma nova janela do navegador irá se abrir, direto com o swagger da aplicação. Através do swagger todas as rotas de aplicação podem ser testadas
 
+Para rodar o frontend, basta navegar até a pasta frontend e executar o comando ``` npm run start```
+
 Teste a demo:
 
 - A primeira página serve para logar na aplicação, feita somente para não deixar a pagina sem "usuário".
