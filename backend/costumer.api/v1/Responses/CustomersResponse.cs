@@ -6,6 +6,7 @@ namespace costumer.api.v1.Responses
 {
     public class CustomersResponse
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string CpfCnpj { get; set; }
@@ -16,9 +17,10 @@ namespace costumer.api.v1.Responses
         public string Type { get; set; }
 
       
-        public CustomersResponse(string name, string email, string cpfCnpj, 
+        public CustomersResponse(string id, string name, string email, string cpfCnpj, 
             string companyName, string zipCode, int stage, int type, List<string> phones)
         {
+            Id = id;
             Name = name;
             Email = email;
             CpfCnpj = cpfCnpj;

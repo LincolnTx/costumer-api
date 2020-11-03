@@ -38,7 +38,7 @@ namespace costumer.api.Application.RequestHandlers.CustomerHandlers
             {
                 var phones = await _phoneRepository.FindPhonesByUserId(customer.Id);
                 
-                var customerResponse = new CustomersResponse(customer.Name, customer.Email, customer.CpfCnpj, customer.CompanyName, 
+                var customerResponse = new CustomersResponse(customer.Id, customer.Name, customer.Email, customer.CpfCnpj, customer.CompanyName, 
                     customer.ZipCode, customer.Stage, customer.Type, SanitizePhones(phones));
                 
                 customersResponses.Add(customerResponse);
@@ -60,7 +60,7 @@ namespace costumer.api.Application.RequestHandlers.CustomerHandlers
 
             var phones = await _phoneRepository.FindPhonesByUserId(customer.Id);
             
-            var customerResponse = new CustomersResponse(customer.Name, customer.Email, customer.CpfCnpj, customer.CompanyName, 
+            var customerResponse = new CustomersResponse(customer.Id, customer.Name, customer.Email, customer.CpfCnpj, customer.CompanyName, 
                 customer.ZipCode, customer.Stage, customer.Type, SanitizePhones(phones));
             
             return customerResponse;

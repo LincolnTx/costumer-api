@@ -1,0 +1,90 @@
+.dashboard-container {
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 30px;
+    margin: 32px auto;
+}
+
+.dashboard-container header {
+    display: flex;
+    align-items: flex-end;
+    align-content: flex-end;
+}
+
+.dashboard-container img {
+    height: 64px;
+}
+
+.dashboard-container a {
+    width: 180px;
+    margin-left: auto;
+    margin-top: 0;
+    color: #000;
+}
+
+.dashboard-container button {
+    height: 60px;
+    width: 60px;
+    border-radius: 4px;
+    border: 1px solid #dcdce6;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.dashboard-container button:hover {
+    border-color: #999;
+}
+
+.dashboard-container h1 {
+    margin-top: 40px;
+    margin-bottom: 24px;
+}
+
+.dashboard-container ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 24px;
+    list-style: none;
+}
+
+.dashboard-container ul li {
+    background: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.dashboard-container ul li  .info-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    margin-top: 20px;
+    
+}
+
+.dashboard-container ul li .info-details span {
+    font-size: 16px;
+}
+
+.dashboard-container ul li .info-details span + span {
+    margin-left: 15px;
+    font-weight: normal;
+    padding-right: 20px;
+}
+
+.dashboard-container ul li .card-header {
+    margin-bottom: 32px;
+}
+
+.dashboard-container ul li .card-header button { 
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 18px;
+    top: 24px;
+    border: 0;
+}
+.dashboard-container ul li .card-header button:hover {
+    opacity: 0.8;
+}

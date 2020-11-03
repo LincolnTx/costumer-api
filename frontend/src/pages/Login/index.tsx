@@ -37,7 +37,6 @@ export default function Login() {
                 history.push('/home');
             } else {
                 setErrorMessage(reponse.data.errors[0]?.message);
-                console.log('merda')
             }
         } catch(err) {
             const {errors} = JSON.parse(err.response.request.response);
