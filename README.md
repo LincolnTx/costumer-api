@@ -30,3 +30,5 @@ Teste a demo:
 - **Microsoft.EntityFrameworkCore**: Framework de banco de dados do dotnet, acesso e manipulação de Banco de dados;
 - **FluentValidation**:Biblioteca para validação de campos em classes c#, usada para validar as informações recebidas;
 
+Foi utilizado o SQLServer localDb como banco da dados dessa aplicação
+
